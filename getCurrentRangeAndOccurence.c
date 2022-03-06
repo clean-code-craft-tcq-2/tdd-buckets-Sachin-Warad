@@ -24,7 +24,7 @@ int getUpperCurrentLimit(int currentInputSamples[], int size) {
 }
 
 char* getCurrentRangeAndOccurence(int currentInputSamples[]) {
-  char buffer[100];
+  char* buffer;
   int lowerCurrentLimit, upperCurrentLimit;
   int size = sizeof(currentInputSamples)/sizeof(currentInputSamples[0]);
   lowerCurrentLimit = getLowerCurrentLimit(currentInputSamples, size);
