@@ -30,7 +30,7 @@ char* getCurrentRangeAndOccurence(int currentInputSamples[]) {
   char* buffer;
   int lowerCurrentLimit, upperCurrentLimit;
   int size = sizeof(currentInputSamples)/sizeof(currentInputSamples[0]);
-  for(int i=0; i<3: i++) {
+  for(int i=0; i<3; i++) {
     printf("%d\n", currentInputSamples[i]);
   }
   printf("%d\n",size);
