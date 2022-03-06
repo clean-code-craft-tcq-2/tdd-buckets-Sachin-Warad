@@ -6,8 +6,10 @@
 
 TEST_CASE("Infers the Current Ranges and their occurence") {
   int testCurrentInputSamples[] = {4,5};
+  int result;
   const char* expectedinterpretation = "4-5, 2";
   char* intrepretedRange;
   intrepretedRange = getCurrentRangeAndOccurence(testCurrentInputSamples);
-  REQUIRE(intrepretedRange == expectedinterpretation);
+  result = strcmp(intrepretedRange, expectedinterpretation);
+  REQUIRE(result == 0);
 }
