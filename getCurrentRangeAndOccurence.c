@@ -27,11 +27,12 @@ int getUpperCurrentLimit(int currentInputSamples[], int size) {
 }
 
 char* getCurrentRangeAndOccurence(int currentInputSamples[]) {
+  int temp[] = {4,5,6};
   char* buffer;
   int lowerCurrentLimit, upperCurrentLimit;
-  int totalSize = sizeof(currentInputSamples);
-  int indiSize = sizeof(currentInputSamples[0]);
-  int size = sizeof(currentInputSamples)/sizeof(currentInputSamples[0]);
+  int totalSize = sizeof(temp);
+  int indiSize = sizeof(temp[0]);
+  int size = sizeof(temp)/sizeof(temp[0]);
   for(int i=0; i<3; i++) {
     printf("%d\n", currentInputSamples[i]);
   }
