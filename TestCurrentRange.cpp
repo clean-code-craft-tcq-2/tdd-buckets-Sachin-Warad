@@ -4,7 +4,7 @@
 
 
 TEST_CASE("Infers the Current Ranges and their occurence") {
-  int currentInputSamples[] = {4,5};
+  int testCurrentInputSamples[] = {4,5};
   const char* expectedinterpretation = "4-5, 2";
   char* intrepretedRange;
   intrepretedRange = getCurrentRangeAndOccurence(currentInputSamples);
