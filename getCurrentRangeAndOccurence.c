@@ -1,0 +1,1 @@
+char* getCurrentRangeAndOccurence(int currentInputSamples[]);
