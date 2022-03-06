@@ -28,5 +28,5 @@ char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize) 
   upperCurrentLimit = getUpperCurrentLimit(currentInputSamples, sampleSize);
   sprintf(buffer,"%d-%d, %zu",lowerCurrentLimit,upperCurrentLimit,sampleSize);
   printf("%s\n",buffer);
-  return "4-6, 3";
+  return buffer;
 }
