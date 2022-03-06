@@ -7,9 +7,9 @@
 TEST_CASE("Infers the Current Ranges and their occurence") {
   int result;
   char* intrepretedRange;
-  int testCurrentInputSamples[] = {7,5,6,4};
+  int testCurrentInputSamples[] = {7,5,8,6,4};
   size_t sampleSize = sizeof(testCurrentInputSamples)/sizeof(testCurrentInputSamples[0]);
-  const char expectedinterpretation[50] = "4-6, 3";
+  const char expectedinterpretation[50] = "4-8, 5";
   intrepretedRange = getCurrentRangeAndOccurence(testCurrentInputSamples,sampleSize);
   result = strcmp(intrepretedRange, expectedinterpretation);
   REQUIRE(result == 0);
