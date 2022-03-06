@@ -6,7 +6,7 @@ int getUpperCurrentLimit(int currentInputSamples[]);
 int getLowerCurrentLimit(int currentInputSamples[], int size) {
   int lowerLimit = currentInputSamples[0];
   for(int i=1; i<size; i++) {
-    if(lowerLimit < currentInputSamples[i]) {
+    if(lowerLimit > currentInputSamples[i]) {
       lowerLimit = currentInputSamples[i];
     }
   }
@@ -16,7 +16,7 @@ int getLowerCurrentLimit(int currentInputSamples[], int size) {
 int getUpperCurrentLimit(int currentInputSamples[], int size) {
   int upperLimit = currentInputSamples[0];
   for(int i=1; i<size; i++) {
-    if(upperLimit > currentInputSamples[i]) {
+    if(upperLimit < currentInputSamples[i]) {
       upperLimit = currentInputSamples[i];
     }
   }
