@@ -15,11 +15,14 @@ int getLowerCurrentLimit(int currentInputSamples[], int size) {
 
 int getUpperCurrentLimit(int currentInputSamples[], int size) {
   int upperLimit = currentInputSamples[0];
+  printf("UpperLimitBefore for %d,%d\n",upperLimit, size);
   for(int i=1; i<size; i++) {
     if(upperLimit < currentInputSamples[i]) {
       upperLimit = currentInputSamples[i];
+      printf("UpperLimit In for %d\n",upperLimit);
     }
   }
+  printf("UpperLimit after for %d\n",upperLimit);
   return upperLimit;
 }
 
@@ -27,6 +30,7 @@ char* getCurrentRangeAndOccurence(int currentInputSamples[]) {
   char* buffer;
   int lowerCurrentLimit, upperCurrentLimit;
   int size = sizeof(currentInputSamples)/sizeof(currentInputSamples[0]);
+  printf("%d\n",size);
   lowerCurrentLimit = getLowerCurrentLimit(currentInputSamples, size);
   upperCurrentLimit = getUpperCurrentLimit(currentInputSamples, size);
   sprintf(buffer,"%d-%d, %d",lowerCurrentLimit,upperCurrentLimit,size);
