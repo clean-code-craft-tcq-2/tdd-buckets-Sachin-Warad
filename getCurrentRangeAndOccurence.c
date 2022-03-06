@@ -2,7 +2,7 @@
 
 int getLowerCurrentLimit(int currentInputSamples[], size_t size) {
   int lowerLimit = currentInputSamples[0];
-  for(int i=1; i<size; i++) {
+  for(size_t i=1; i<size; i++) {
     if(lowerLimit > currentInputSamples[i]) {
       lowerLimit = currentInputSamples[i];
     }
@@ -12,7 +12,7 @@ int getLowerCurrentLimit(int currentInputSamples[], size_t size) {
 
 int getUpperCurrentLimit(int currentInputSamples[], size_t size) {
   int upperLimit = currentInputSamples[0];
-  for(int i=1; i<size; i++) {
+  for(size_t i=1; i<size; i++) {
     if(upperLimit < currentInputSamples[i]) {
       upperLimit = currentInputSamples[i];
     }
@@ -25,7 +25,7 @@ char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize) 
   int lowerCurrentLimit, upperCurrentLimit;
   lowerCurrentLimit = getLowerCurrentLimit(currentInputSamples, sampleSize);
   upperCurrentLimit = getUpperCurrentLimit(currentInputSamples, sampleSize);
-  sprintf(buffer,"%d-%d, %d",lowerCurrentLimit,upperCurrentLimit,sampleSize);
+  sprintf(buffer,"%d-%d, %zu",lowerCurrentLimit,upperCurrentLimit,sampleSize);
   printf("%s\n",buffer);
   return buffer;
 }
