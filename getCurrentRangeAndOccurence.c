@@ -21,11 +21,12 @@ int getUpperCurrentLimit(int currentInputSamples[], size_t size) {
 }
 
 char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize) {
-  //char buffer[50];
+  char result[];
+  char *buffer = result;
   int lowerCurrentLimit, upperCurrentLimit;
   lowerCurrentLimit = getLowerCurrentLimit(currentInputSamples, sampleSize);
   upperCurrentLimit = getUpperCurrentLimit(currentInputSamples, sampleSize);
-  printf("%d-%d, %zu",lowerCurrentLimit,upperCurrentLimit,sampleSize);
-  //printf("%s\n",buffer);
+  sprintf(buffer,"%d-%d, %zu",lowerCurrentLimit,upperCurrentLimit,sampleSize);
+  printf("%s\n",buffer);
   return "4-6, 3";
 }
