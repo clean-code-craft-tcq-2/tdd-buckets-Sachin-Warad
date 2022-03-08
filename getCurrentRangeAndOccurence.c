@@ -1,32 +1,46 @@
 #include "getCurrentRangeAndOccurence.h"
 
-int getLowerCurrentLimit(int currentInputSamples[], size_t size) {
-  int lowerLimit = currentInputSamples[0];
-  for(size_t i=1; i<size; i++) {
-    if(lowerLimit > currentInputSamples[i]) {
-      lowerLimit = currentInputSamples[i];
-    }
-  }
-  return lowerLimit;
+char* formatOutput(int consecutiveSamples[], int size) {
+  char result[50];
+  char *buffer = result;
+  sprintf(buffer,"%d-%d, %d\n",consecutiveSamples[0],consecutiveSamples[size-1],size);
+  printf("%s\n",buffer);
+  retun buffer;
 }
 
-int getUpperCurrentLimit(int currentInputSamples[], size_t size) {
-  int upperLimit = currentInputSamples[0];
-  for(size_t i=1; i<size; i++) {
-    if(upperLimit < currentInputSamples[i]) {
-      upperLimit = currentInputSamples[i];
+char* checkForConsecutiveSamples(int currentInputSamples[], int sampleSize) {
+  int index=0,consecutiveSamples[10];
+  char result[50];
+  char *buffer = result;
+    for(int i=0; i<size; i++) {
+        consecutiveSamples[index] = currentInputSamples[i];
+        if(currentInputSamples[i+1] - currentInputSamples[i] <= 1) {
+            index++;
+        }else {
+            buffer = formatOutput(consecutiveSamples,(index+1));
+            index=0;
+        }
     }
-  }
-  return upperLimit;
+    return buffer
+}
+
+void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
+    int i, j, temp;
+    for(i=0; i<sampleSize-1; i++) {
+        for(j=i+1; j<sampleSize; j++) {
+            if(arr[i]>arr[j]) {
+                temp = currentInputSamples[i];
+                currentInputSamples[i] = currentInputSamples[j];
+                currentInputSamples[j] = temp;
+            }
+        }
+    }
 }
 
 char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize) {
   char result[50];
   char *buffer = result;
-  int lowerCurrentLimit, upperCurrentLimit;
-  lowerCurrentLimit = getLowerCurrentLimit(currentInputSamples, sampleSize);
-  upperCurrentLimit = getUpperCurrentLimit(currentInputSamples, sampleSize);
-  sprintf(buffer,"%d-%d, %zu",lowerCurrentLimit,upperCurrentLimit,sampleSize);
-  printf("%s\n",buffer);
+  sortCurrentRanges(currentInputSamples, sampleSize);
+  buffer = checkForConsecutiveSamples(currentInputSamples, sampleSize);
   return buffer;
 }
