@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include "getCurrentRangeAndOccurence.h"
 
 char* formatOutput(int consecutiveSamples[], int size) {
