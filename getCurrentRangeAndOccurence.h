@@ -2,5 +2,6 @@
 #include <string.h>
 
 char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize);
-int getLowerCurrentLimit(int currentInputSamples[], size_t size);
-int getUpperCurrentLimit(int currentInputSamples[], size_t size);
+void sortCurrentRanges(int currentInputSamples[], int sampleSize);
+char* checkForConsecutiveSamples(int currentInputSamples[], int sampleSize);
+char* formatOutput(int consecutiveSamples[], int size);
