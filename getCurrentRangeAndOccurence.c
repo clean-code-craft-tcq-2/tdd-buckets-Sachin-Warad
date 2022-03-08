@@ -4,7 +4,7 @@ char* formatOutput(int consecutiveSamples[], int size) {
   char result[50];
   char *buffer = result;
   sprintf(buffer,"%d-%d, %d\n",consecutiveSamples[0],consecutiveSamples[size-1],size);
-  printf("%s",buffer);
+  //printf("%s",buffer);
   return buffer;
 }
 
@@ -19,7 +19,7 @@ char* checkForConsecutiveSamples(int currentInputSamples[], int sampleSize) {
         }else {
             //buffer = formatOutput(consecutiveSamples,(index+1));
             strcat(buffer,formatOutput(consecutiveSamples,(index+1)));
-            printf("%s",buffer);
+            //printf("%s",buffer);
             index=0;
         }
     }
@@ -41,9 +41,9 @@ void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
 }
 
 char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize) {
-  char result[50];
-  char *buffer = result;
+//   char result[50];
+//   char *buffer = result;
   sortCurrentRanges(currentInputSamples, sampleSize);
-  buffer = checkForConsecutiveSamples(currentInputSamples, sampleSize);
+  char *buffer = checkForConsecutiveSamples(currentInputSamples, sampleSize);
   return buffer;
 }
