@@ -4,7 +4,6 @@ char* formatOutput(int consecutiveSamples[], int size) {
   char result[50];
   char *buffer = result;
   sprintf(buffer,"%d-%d, %d\n",consecutiveSamples[0],consecutiveSamples[size-1],size);
-  printf("%s",buffer);
   return buffer;
 }
 
@@ -17,10 +16,12 @@ char* checkForConsecutiveSamples(int currentInputSamples[], int sampleSize) {
         if(currentInputSamples[i+1] - currentInputSamples[i] <= 1) {
             index++;
         }else {
-            buffer = formatOutput(consecutiveSamples,(index+1));
+            //buffer = formatOutput(consecutiveSamples,(index+1));
+            strcat(buffer,formatOutput(consecutiveSamples,(index+1)));
             index=0;
         }
     }
+    printf("%s",buffer);
     return buffer;
 }
 
