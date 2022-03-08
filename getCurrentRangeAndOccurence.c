@@ -26,7 +26,6 @@ char* checkForConsecutiveSamples(int currentInputSamples[], int sampleSize) {
             index=0;
         }
     }
-    printf("%s",buffer);
     return buffer;
 }
 
