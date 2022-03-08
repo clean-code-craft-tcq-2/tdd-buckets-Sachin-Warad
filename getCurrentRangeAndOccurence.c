@@ -4,7 +4,7 @@ char* formatOutput(int consecutiveSamples[], int size) {
   char result[50];
   char *buffer = result;
   sprintf(buffer,"%d-%d, %d\n",consecutiveSamples[0],consecutiveSamples[size-1],size);
-  printf("%s\n",buffer);
+  printf("%s",buffer);
   return buffer;
 }
 
