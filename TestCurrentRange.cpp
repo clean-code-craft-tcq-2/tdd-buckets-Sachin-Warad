@@ -2,7 +2,6 @@
 
 #include "test/catch.hpp"
 #include "getCurrentRangeAndOccurence.h"
-#include <assert.h>
 
 
 TEST_CASE("Infers the Current Ranges and their occurence") {
