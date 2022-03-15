@@ -7,5 +7,5 @@ struct intrepetedData
 
 int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[]);
 void sortCurrentRanges(int currentInputSamples[], int sampleSize);
-int checkForConsecutiveSamples(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[]);
+int checkForConsecutiveSamples(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber);
