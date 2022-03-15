@@ -37,11 +37,17 @@ void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
   }
 }
 
-int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[]) {
+void printOnConsole(int min, int max, int count) {
+        printf("%d-%d, %d\n",min,max,count);
+}
+
+int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count)) {
+  void (*fn_ptrPrintOutput)(int, int, int);
+  fn_ptrPrintOutput = &printOnConsole;
   sortCurrentRanges(currentInputSamples, sampleSize);
   int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
   for(int i=0; i<consecutiveSamples; i++) {
-        printf("%d-%d, %d\n",dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);
+        fn_ptrPrintOutput(dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);  
   }
   return consecutiveSamples;
 }
