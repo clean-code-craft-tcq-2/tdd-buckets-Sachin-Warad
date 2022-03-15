@@ -6,6 +6,7 @@ struct intrepetedData
 };
 
 int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count));
+int isInputValid(int currentInputSamples[], int sampleSize);
 void sortCurrentRanges(int currentInputSamples[], int sampleSize);
 int checkForConsecutiveSamples(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber);
