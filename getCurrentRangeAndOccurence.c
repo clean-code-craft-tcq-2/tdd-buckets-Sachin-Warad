@@ -41,11 +41,25 @@ void printOnConsole(int min, int max, int count) {
         printf("%d-%d, %d\n",min,max,count);
 }
 
+int isInputValid(int currentInputSamples[], int sampleSize) {
+    for(int i=0; i<sampleSize-1; i++) {
+        if(currentInputSamples[i] < 0) {
+            return 0;
+        }
+    }
+    return 1;
+}
+
 int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count)) {
-  sortCurrentRanges(currentInputSamples, sampleSize);
-  int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
-  for(int i=0; i<consecutiveSamples; i++) {
+  int isInputsValid = validateInputs(currentInputSamples,sampleSize);
+  if(isInputsValid == 1) {
+    sortCurrentRanges(currentInputSamples, sampleSize);
+    int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
+    for(int i=0; i<consecutiveSamples; i++) {
         fn_ptrPrintOutput(dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);  
+    }
+    return consecutiveSamples;
   }
-  return consecutiveSamples;
+  return 0;
+  
 }
