@@ -2,6 +2,7 @@
 
 #include "test/catch.hpp"
 #include "getCurrentRangeAndOccurence.h"
+#include <assert.h>
 
 
 TEST_CASE("Infers the Current Ranges and their occurence") {
@@ -19,9 +20,9 @@ TEST_CASE("Infers the Current Ranges and their occurence") {
     {20,20,1}
   };
   for(int i=0; i<(int)sampleSize; i++) {
-    REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
-    REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
-    REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
+    assert(dataInterpreted[i].Min == expectedData[i].Min);
+    assert(dataInterpreted[i].Max == expectedData[i].Max);
+    assert(dataInterpreted[i].Size == expectedData[i].Size);
   }
   
   int testCurrentInputSamples1[] = {6,-3,7,9,10,12};
