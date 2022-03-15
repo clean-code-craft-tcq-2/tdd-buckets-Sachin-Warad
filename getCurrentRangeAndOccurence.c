@@ -41,7 +41,7 @@ void printOnConsole(int min, int max, int count) {
         printf("%d-%d, %d\n",min,max,count);
 }
 
-int isInputValid(int currentInputSamples[], int sampleSize) {
+int validateInputs(int currentInputSamples[], int sampleSize) {
     for(int i=0; i<sampleSize-1; i++) {
         if(currentInputSamples[i] < 0) {
             return 0;
