@@ -2,31 +2,26 @@
 #include <string.h>
 #include "getCurrentRangeAndOccurence.h"
 
-char* formatOutput(int consecutiveSamples[], int size) {
-  char result[50];
-  char *buffer = result;
-  if(size > 1) {
-    sprintf(buffer,"%d-%d, %d\n",consecutiveSamples[0],consecutiveSamples[size-1],size);
-  }else {
-    sprintf(buffer,"%d, %d\n",consecutiveSamples[0],size);
-  }
-  return buffer;
+void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber) {
+    Details[consecutiveSamplesNumber].Min = consecutiveSamples[0];
+    Details[consecutiveSamplesNumber].Max = consecutiveSamples[size];
+    Details[consecutiveSamplesNumber].Size = size+1;
+    return;
 }
 
-char* checkForConsecutiveSamples(int currentInputSamples[], int sampleSize) {
-  int index=0,consecutiveSamples[10];
-  char result[50];
-  char *buffer = result;
-    for(int i=0; i<sampleSize; i++) {
-        consecutiveSamples[index] = currentInputSamples[i];
-        if(currentInputSamples[i+1] - currentInputSamples[i] <= 1) {
-            index++;
-        }else {
-            strcat(buffer,formatOutput(consecutiveSamples,(index+1)));
-            index=0;
-        }
-    }
-    return buffer;
+int checkForConsecutiveSamples(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[]) {
+  int index=0,consecutiveSamplesNumber=0, consecutiveSamples[sampleSize];
+  for(int i=0; i<sampleSize; i++) {
+      consecutiveSamples[index] = currentInputSamples[i];
+      if((currentInputSamples[i+1] - currentInputSamples[i] <= 1) && (i<sampleSize-1)) {
+          index++;
+      }else {
+         updateIntrepretedData(dataInterpreted, consecutiveSamples, index, consecutiveSamplesNumber);
+         consecutiveSamplesNumber++;
+         index=0;
+      }
+  }
+  return consecutiveSamplesNumber;
 }
 
 void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
@@ -42,8 +37,11 @@ void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
   }
 }
 
-char* getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize) {
+int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[]) {
   sortCurrentRanges(currentInputSamples, sampleSize);
-  char *buffer = checkForConsecutiveSamples(currentInputSamples, sampleSize);
-  return buffer;
+  int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
+  for(int i=0; i<consecutiveSamples; i++) {
+        printf("%d-%d, %d\n",dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);
+  }
+  return consecutiveSamples;
 }
