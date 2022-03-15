@@ -3,13 +3,13 @@
 #include "getCurrentRangeAndOccurence.h"
 
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber) {
-    Details[consecutiveSamplesNumber].Min = consecutiveSamples[0];
-    Details[consecutiveSamplesNumber].Max = consecutiveSamples[size];
-    Details[consecutiveSamplesNumber].Size = size+1;
+    dataInterpreted[consecutiveSamplesNumber].Min = consecutiveSamples[0];
+    dataInterpreted[consecutiveSamplesNumber].Max = consecutiveSamples[size];
+    dataInterpreted[consecutiveSamplesNumber].Size = size+1;
     return;
 }
 
-int checkForConsecutiveSamples(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[]) {
+int checkForConsecutiveSamples(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
   int index=0,consecutiveSamplesNumber=0, consecutiveSamples[sampleSize];
   for(int i=0; i<sampleSize; i++) {
       consecutiveSamples[index] = currentInputSamples[i];
