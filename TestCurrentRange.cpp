@@ -10,9 +10,8 @@ TEST_CASE("Infers the Current Ranges and their occurence") {
   struct intrepetedData dataInterpreted[sampleSize];
   void (*fn_ptrPrintOutput)(int, int, int);
   fn_ptrPrintOutput = &printOnConsole;
-  int expectedConsecutiveSamples = 3;
   int intrepretedConsecutiveSamples = getCurrentRangeAndOccurence(testCurrentInputSamples,sampleSize,dataInterpreted,fn_ptrPrintOutput);
-  REQUIRE(intrepretedConsecutiveSamples == expectedConsecutiveSamples);
+  REQUIRE(intrepretedConsecutiveSamples == 3);
   
   int testCurrentInputSamples1[] = {6,-3,7,9,10,12};
   size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
