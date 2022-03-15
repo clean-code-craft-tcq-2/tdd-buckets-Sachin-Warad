@@ -17,7 +17,7 @@ TEST_CASE("Infers the Current Ranges and their occurence") {
     {4,8,5},
     {10,12,3},
     {20,20,1}
-  }
+  };
   for(int i=0; i<(int)sampleSize; i++) {
     REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
     REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
