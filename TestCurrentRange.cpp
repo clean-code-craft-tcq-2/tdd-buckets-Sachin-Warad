@@ -12,4 +12,9 @@ TEST_CASE("Infers the Current Ranges and their occurence") {
   fn_ptrPrintOutput = &printOnConsole;
   int expectedConsecutiveSamples = getCurrentRangeAndOccurence(testCurrentInputSamples,sampleSize,dataInterpreted,fn_ptrPrintOutput);
   REQUIRE(expectedConsecutiveSamples == 3);
+  
+  int testCurrentInputSamples1[] = {6,-3,7,9,10,12};
+  size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
+  int expectedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput);
+  REQUIRE(expectedConsecutiveSamples1 == 0);
 }
