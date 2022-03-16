@@ -19,7 +19,7 @@ TEST_CASE("Infers the Current Ranges and their occurence") {
     {20,20,1},
     {22,22,1}
   };
-  for(int i=0; i<(int)sampleSize1; i++) {
+  for(int i=0; i<(int)expectedConsecutiveSamples1 ; i++) {
     REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
     REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
     REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
