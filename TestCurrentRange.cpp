@@ -20,9 +20,9 @@ TEST_CASE("Infers the Current Ranges and their occurence") {
     {22,22,1}
   };
   for(int i=0; i<(int)sampleSize1; i++) {
-    assert(dataInterpreted[i].Min == expectedData[i].Min);
-    assert(dataInterpreted[i].Max == expectedData[i].Max);
-    assert(dataInterpreted[i].Size == expectedData[i].Size);
+    REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
+    REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
+    REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
   }
   
   int testCurrentInputSamples2[] = {6,-3,7,9,10,12};
