@@ -5,16 +5,29 @@
 
 
 TEST_CASE("Infers the Current Ranges and their occurence") {
-  int testCurrentInputSamples[] = {7,5,8,6,4,12,10,11,20,22};
-  size_t sampleSize = sizeof(testCurrentInputSamples)/sizeof(testCurrentInputSamples[0]);
+  int testCurrentInputSamples1[] = {7,5,8,6,4,12,10,11,20,22};
+  int expectedConsecutiveSamples1 = 4;
+  size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
   struct intrepetedData dataInterpreted[sampleSize];
   void (*fn_ptrPrintOutput)(int, int, int);
   fn_ptrPrintOutput = &printOnConsole;
-  int expectedConsecutiveSamples = getCurrentRangeAndOccurence(testCurrentInputSamples,sampleSize,dataInterpreted,fn_ptrPrintOutput);
-  REQUIRE(expectedConsecutiveSamples == 4);
+  int intrepetedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize,dataInterpreted,fn_ptrPrintOutput);
+  REQUIRE(expectedConsecutiveSamples1 == intrepetedConsecutiveSamples1);
+  intrepetedData expectedData[sampleSize] = {
+    {4,8,5},
+    {10,12,3},
+    {20,20,1},
+    {22,22,1}
+  };
+  for(int i=0; i<(int)sampleSize1; i++) {
+    assert(dataInterpreted[i].Min == expectedData[i].Min);
+    assert(dataInterpreted[i].Max == expectedData[i].Max);
+    assert(dataInterpreted[i].Size == expectedData[i].Size);
+  }
   
-  int testCurrentInputSamples1[] = {6,-3,7,9,10,12};
-  size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
-  int expectedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput);
-  REQUIRE(expectedConsecutiveSamples1 == 0);
+  int testCurrentInputSamples2[] = {6,-3,7,9,10,12};
+  int expectedConsecutiveSamples2 = 0;
+  size_t sampleSize1 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
+  int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput);
+  REQUIRE(expectedConsecutiveSamples2 == intrepetedConsecutiveSamples2);
 }
