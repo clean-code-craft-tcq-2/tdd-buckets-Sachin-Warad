@@ -36,7 +36,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case") {
   int testCurrentInputSamples2[] = {6,-3,7,9,10,12};
   int expectedConsecutiveSamples2 = 0;
   size_t sampleSize2 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
-  struct intrepetedData dataInterpreted[sampleSize1];
+  struct intrepetedData dataInterpreted[sampleSize2];
   void (*fn_ptrPrintOutput)(int, int, int);
   fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput);
