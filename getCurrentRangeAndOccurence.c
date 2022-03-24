@@ -50,11 +50,18 @@ int validateInputs(int currentInputSamples[], int sampleSize) {
     return 1;
 }
 
+int handleValidSampleCase(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
+    sortCurrentRanges(currentInputSamples, sampleSize);
+    int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
+    return consecutiveSamples;
+}
+
 int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count)) {
   int isInputsValid = validateInputs(currentInputSamples,sampleSize);
   if(isInputsValid == 1) {
-    sortCurrentRanges(currentInputSamples, sampleSize);
-    int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
+    int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted);
+    //sortCurrentRanges(currentInputSamples, sampleSize);
+    //int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
     for(int i=0; i<consecutiveSamples; i++) {
         fn_ptrPrintOutput(dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);  
     }
