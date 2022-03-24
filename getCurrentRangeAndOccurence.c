@@ -60,8 +60,6 @@ int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, st
   int isInputsValid = validateInputs(currentInputSamples,sampleSize);
   if(isInputsValid == 1) {
     int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted);
-    //sortCurrentRanges(currentInputSamples, sampleSize);
-    //int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
     for(int i=0; i<consecutiveSamples; i++) {
         fn_ptrPrintOutput(dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);  
     }
