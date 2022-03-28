@@ -56,9 +56,6 @@ void decryptingADC(double currentInputSamples[],int sampleSize) {
         float decryptedValue = (10 * currentInputSamples[i])/4094;
         currentInputSamples[i] = lround(decryptedValue);
     }
-    for(int i=0; i<sampleSize;i++) {
-        printf("%lf\n",currentInputSamples[i]);
-    }
 }
 
 int handleValidSampleCase(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
