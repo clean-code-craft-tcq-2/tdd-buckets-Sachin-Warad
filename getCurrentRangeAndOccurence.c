@@ -54,7 +54,7 @@ int validateInputs(int currentInputSamples[], int sampleSize) {
 void decryptingADC(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
         float decryptedValue = (10 * currentInputSamples[i])/4094;
-        currentInputSamples[i] = lround(num);
+        currentInputSamples[i] = lround(decryptedValue);
     }
     for(int i=0; i<sampleSize;i++) {
         printf("%lf\n",currentInputSamples[i]);
