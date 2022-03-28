@@ -12,3 +12,4 @@ void sortCurrentRanges(int currentInputSamples[], int sampleSize);
 int checkForConsecutiveSamples(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber);
 void printOnConsole(int min, int max, int count);
+void decryptingADC(double currentInputSamples[],int sampleSize);
