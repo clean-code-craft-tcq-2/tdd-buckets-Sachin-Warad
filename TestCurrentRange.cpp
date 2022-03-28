@@ -24,12 +24,8 @@ TEST_CASE("Infers the Current Ranges and their occurence - valid case") {
     REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
     REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
   }
-  
-//   int testCurrentInputSamples2[] = {6,-3,7,9,10,12};
-//   int expectedConsecutiveSamples2 = 0;
-//   size_t sampleSize2 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
-//   int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput);
-//   REQUIRE(expectedConsecutiveSamples2 == intrepetedConsecutiveSamples2);
+  double x[] = {4094,1196,1233,3453};
+  decryptingADC(x,4);
 }
 
 TEST_CASE("Infers the Current Ranges and their occurence - Invalid case") {
