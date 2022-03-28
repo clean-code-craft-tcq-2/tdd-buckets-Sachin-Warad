@@ -42,7 +42,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case") {
 TEST_CASE("Infers the decryption of ADC") {
   double adcOutput[] = {4094,1196,1233,3453,0,1111,3210};
   size_t sampleSize3 = sizeof(adcOutput)/sizeof(adcOutput[0]);
-  decryptingADC(adcOutput,sampleSize3)
+  decryptingADC(adcOutput,sampleSize3);
   double expectedDataADC[] = {10,3,3,8,0,3,8};
   for(int i=0; i<(int)sampleSize3; i++) {
     REQUIRE(adcOutput[i] == expectedDataADC[i]);
