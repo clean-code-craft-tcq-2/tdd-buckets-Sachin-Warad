@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include "getCurrentRangeAndOccurence.h"
 
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber) {
@@ -48,6 +49,16 @@ int validateInputs(int currentInputSamples[], int sampleSize) {
         }
     }
     return 1;
+}
+
+void decryptingADC(double currentInputSamples[],int sampleSize) {
+    for(int i=0; i<sampleSize; i++) {
+        float decryptedValue = (10*x[i])/4094;
+        x[i] = lround(num);
+    }
+    for(int i=0; i<sampleSize;i++) {
+        printf("%lf\n",x[i]);
+    }
 }
 
 int handleValidSampleCase(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
