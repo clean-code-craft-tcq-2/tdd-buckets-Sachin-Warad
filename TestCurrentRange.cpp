@@ -5,7 +5,7 @@
 
 
 TEST_CASE("Infers the Current Ranges and their occurence - valid case") {
-  double testCurrentInputSamples1[] = {535,700,1130,2000,2566,2999,3333,4094};
+  double testCurrentInputSamples1[] = {535,1130,700,2000,2566,4094,2999,3333};
   int expectedConsecutiveSamples1 = 3;
   size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
   struct intrepetedData dataInterpreted[sampleSize1];
