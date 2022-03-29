@@ -11,7 +11,8 @@ void updateIntrepretedData(struct intrepetedData dataInterpreted[], double conse
 }
 
 int checkForConsecutiveSamples(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
-  int index=0,consecutiveSamplesNumber=0, consecutiveSamples[sampleSize];
+  int index=0,consecutiveSamplesNumber=0; 
+  double consecutiveSamples[sampleSize];
   for(int i=0; i<sampleSize; i++) {
       consecutiveSamples[index] = currentInputSamples[i];
       if((currentInputSamples[i+1] - currentInputSamples[i] <= 1) && (i<sampleSize-1)) {
@@ -39,7 +40,7 @@ void sortCurrentRanges(double currentInputSamples[], int sampleSize) {
 }
 
 void printOnConsole(double min, double max, int count) {
-        printf("%d-%d, %d\n",min,max,count);
+        printf("%lf-%lf, %d\n",min,max,count);
 }
 
 int validateInputs(double currentInputSamples[], int sampleSize) {
