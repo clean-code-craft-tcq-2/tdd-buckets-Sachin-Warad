@@ -66,7 +66,7 @@ int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct i
     return consecutiveSamples;
 }
 
-int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count)) {
+int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(double min, double max, int count)) {
   int isInputsValid = validateInputs(currentInputSamples,sampleSize);
   if(isInputsValid == 1) {
     int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted);
