@@ -40,7 +40,7 @@ void sortCurrentRanges(double currentInputSamples[], int sampleSize) {
 }
 
 void printOnConsole(double min, double max, int count) {
-        printf("%lf-%lf, %d\n",min,max,count);
+        printf("%.0f-%.0f, %d\n",min,max,count);
 }
 
 int validateInputs(double currentInputSamples[], int sampleSize) {
