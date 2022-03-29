@@ -3,14 +3,14 @@
 #include <math.h>
 #include "getCurrentRangeAndOccurence.h"
 
-void updateIntrepretedData(struct intrepetedData dataInterpreted[], int consecutiveSamples[], int size, int consecutiveSamplesNumber) {
+void updateIntrepretedData(struct intrepetedData dataInterpreted[], double consecutiveSamples[], int size, int consecutiveSamplesNumber) {
     dataInterpreted[consecutiveSamplesNumber].Min = consecutiveSamples[0];
     dataInterpreted[consecutiveSamplesNumber].Max = consecutiveSamples[size];
     dataInterpreted[consecutiveSamplesNumber].Size = size+1;
     return;
 }
 
-int checkForConsecutiveSamples(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
+int checkForConsecutiveSamples(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
   int index=0,consecutiveSamplesNumber=0, consecutiveSamples[sampleSize];
   for(int i=0; i<sampleSize; i++) {
       consecutiveSamples[index] = currentInputSamples[i];
@@ -25,7 +25,7 @@ int checkForConsecutiveSamples(int currentInputSamples[], int sampleSize, struct
   return consecutiveSamplesNumber;
 }
 
-void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
+void sortCurrentRanges(double currentInputSamples[], int sampleSize) {
   int i, j, temp;
   for(i=0; i<sampleSize-1; i++) {
       for(j=i+1; j<sampleSize; j++) {
@@ -38,11 +38,11 @@ void sortCurrentRanges(int currentInputSamples[], int sampleSize) {
   }
 }
 
-void printOnConsole(int min, int max, int count) {
+void printOnConsole(double min, double max, int count) {
         printf("%d-%d, %d\n",min,max,count);
 }
 
-int validateInputs(int currentInputSamples[], int sampleSize) {
+int validateInputs(double currentInputSamples[], int sampleSize) {
     for(int i=0; i<sampleSize-1; i++) {
         if(currentInputSamples[i] < 0) {
             return 0;
@@ -51,20 +51,21 @@ int validateInputs(int currentInputSamples[], int sampleSize) {
     return 1;
 }
 
-void decryptingADC(double currentInputSamples[],int sampleSize) {
+void convertToAmps(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
-        float decryptedValue = (10 * currentInputSamples[i])/4094;
-        currentInputSamples[i] = lround(decryptedValue);
+        float ampValue = (10 * currentInputSamples[i])/4094;
+        currentInputSamples[i] = lround(ampValue);
     }
 }
 
-int handleValidSampleCase(int currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
+int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
+    convertToAmps(currentInputSamples,sampleSize);
     sortCurrentRanges(currentInputSamples, sampleSize);
     int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
     return consecutiveSamples;
 }
 
-int getCurrentRangeAndOccurence(int currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count)) {
+int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(int min, int max, int count)) {
   int isInputsValid = validateInputs(currentInputSamples,sampleSize);
   if(isInputsValid == 1) {
     int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted);
