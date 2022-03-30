@@ -54,8 +54,9 @@ int validateInputs(double currentInputSamples[], int sampleSize) {
 
 void convertToAmps10BitSesnor(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
-        float ampValue = (15 * (currentInputSamples[i]-511)/511);
+        float ampValue = ((currentInputSamples[i]-511)*15/511);
         currentInputSamples[i] = lround(ampValue);
+        printf("%.0f",currentInputSamples[i]0;
     }
 }
 
