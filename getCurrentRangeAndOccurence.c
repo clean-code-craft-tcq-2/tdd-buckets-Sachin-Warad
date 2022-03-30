@@ -56,19 +56,26 @@ void convertToAmps10BitSesnor(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
         float ampValue = ((currentInputSamples[i]-511)*15/511);
         currentInputSamples[i] = lround(ampValue);
-        printf("%.0f",currentInputSamples[i]);
     }
 }
 
-void convertToAmps(double currentInputSamples[],int sampleSize) {
+void convertToAmps12BitSesnor(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
         float ampValue = (10 * currentInputSamples[i])/4094;
         currentInputSamples[i] = lround(ampValue);
     }
 }
 
-int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]) {
-    convertToAmps(currentInputSamples,sampleSize);
+void convertToAmps(double currentInputSamples[],int sampleSize, SensorType sensor) {
+    if(sensor == Sensor12Bit) {
+        convertToAmps12BitSesnor(currentInputSamples, sampleSize);
+    } else {
+        convertToAmps10BitSesnor(currentInputSamples, sampleSize);
+    }
+}
+
+int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[], SensorType sensor) {
+    convertToAmps(currentInputSamples, sampleSize, sensor);
     sortCurrentRanges(currentInputSamples, sampleSize);
     int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
     return consecutiveSamples;
@@ -79,7 +86,7 @@ int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize,
   double sensorMaxValueErr[2] = {SensorMax12Bit,SensorMax10Bit};
   int isInputsValid = validateInputs(currentInputSamples,sampleSize,sensor,sensorMaxValueErr);
   if(isInputsValid == 1) {
-    int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted);
+    int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted, sensor);
     for(int i=0; i<consecutiveSamples; i++) {
         fn_ptrPrintOutput(dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);  
     }
