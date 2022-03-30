@@ -53,12 +53,12 @@ Start Test-driven approach
 
 ## Assumptions
 
-1. Input Samples contains only positive values
+1. For 12 bit sensor if the sample contains negative number or max then it is invalid case and 0-0, 0 is printed
 2. Input Samples can be either sorted or not
 
 # Actions
 
 1. Validate the Inputs
-2. If inputs are valid then sort the smaples and intrepret the Ranges
+2. If inputs are valid then convert the ADC output to Amps, sort the smaples and intrepret the Ranges
 3. Then display the intrepreted data in CSV format
 4. If the inputs are not valid then return 0
