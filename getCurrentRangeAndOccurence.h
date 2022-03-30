@@ -5,10 +5,17 @@ struct intrepetedData
     int Size;
 };
 
-#define MaxRange12BitSensor  4095
+typedef enum {
+  Sensor12Bit,
+  Sensor10Bit
+} SensorType;
 
-int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(double min, double max, int count));
-int validateInputs(double currentInputSamples[], int sampleSize);
+#define SensorMax12Bit 4095
+#define SensorMax10Bit 1023
+
+int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], 
+                                void (*fn_ptrPrintOutput)(double min, double max, int count), SensorType sensor);
+int validateInputs(double currentInputSamples[], int sampleSize, SensorType sensor, double sensorMaxValueErr[]);
 int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
 void sortCurrentRanges(double currentInputSamples[], int sampleSize);
 int checkForConsecutiveSamples(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
