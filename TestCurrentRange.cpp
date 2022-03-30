@@ -60,8 +60,8 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(max valu
 TEST_CASE("Infers the conversion to Amps for 10bit sensor") {
   double adcOutput10bit[] = {0,1022,511,238,68,820,1000};
   size_t sampleSize5 = sizeof(adcOutput10bit)/sizeof(adcOutput10bit[0]);
-  convertToAmps10BitSesnor(adcOutput10bit,sampleSize5);
-  double expectedDataADC10bit[] = {-15,15,0,-8,-13,9,14};
+  convertToAbsAmps10BitSesnor(adcOutput10bit,sampleSize5);
+  double expectedDataADC10bit[] = {15,15,0,8,13,9,14};
   for(int i=0; i<(int)sampleSize5; i++) {
     REQUIRE(adcOutput10bit[i] == expectedDataADC10bit[i]);
   }
