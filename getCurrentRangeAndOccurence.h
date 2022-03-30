@@ -15,3 +15,4 @@ int checkForConsecutiveSamples(double currentInputSamples[], int sampleSize, str
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], double consecutiveSamples[], int size, int consecutiveSamplesNumber);
 void printOnConsole(double min, double max, int count);
 void convertToAmps(double currentInputSamples[],int sampleSize);
+void convertToAmps10BitSesnor(double currentInputSamples[],int sampleSize);
