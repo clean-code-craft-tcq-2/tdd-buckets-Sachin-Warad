@@ -3,15 +3,14 @@
 #include "test/catch.hpp"
 #include "getCurrentRangeAndOccurence.h"
 
-void (*fn_ptrPrintOutput)(double, double, int);
-fn_ptrPrintOutput = &printOnConsole;
-
 TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - valid case") {
   double testCurrentInputSamples1[] = {535,1130,700,2000,2566,4094,2999,3333};
   int expectedConsecutiveSamples1 = 3;
   size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
   struct intrepetedData dataInterpreted[sampleSize1];
-  int intrepetedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
+  void (*fn_ptrPrintOutput1)(double, double, int);
+  fn_ptrPrintOutput1 = &printOnConsole;
+  int intrepetedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput1,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples1 == intrepetedConsecutiveSamples1);
   intrepetedData expectedData1[sampleSize1] = {
     {1,3,3},
@@ -30,7 +29,9 @@ TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Inv
   int expectedConsecutiveSamples2 = 0;
   size_t sampleSize2 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
   struct intrepetedData dataInterpreted[sampleSize2];
-  int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
+  void (*fn_ptrPrintOutput2)(double, double, int);
+  fn_ptrPrintOutput2 = &printOnConsole;
+  int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput2,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples2 == intrepetedConsecutiveSamples2);
 }
 
@@ -49,7 +50,9 @@ TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Inv
   int expectedConsecutiveSamples3 = 0;
   size_t sampleSize4 = sizeof(testCurrentInputSamples3)/sizeof(testCurrentInputSamples3[0]);
   struct intrepetedData dataInterpreted[sampleSize4];
-  int intrepetedConsecutiveSamples3 = getCurrentRangeAndOccurence(testCurrentInputSamples3,sampleSize4,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
+  void (*fn_ptrPrintOutput3)(double, double, int);
+  fn_ptrPrintOutput3 = &printOnConsole;
+  int intrepetedConsecutiveSamples3 = getCurrentRangeAndOccurence(testCurrentInputSamples3,sampleSize4,dataInterpreted,fn_ptrPrintOutput3,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples3 == intrepetedConsecutiveSamples3);
 }
 
@@ -68,7 +71,9 @@ TEST_CASE("Infers the Current Ranges and their occurence for 10 bit Sensor - val
   int expectedConsecutiveSamples4 = 3;
   size_t sampleSize6 = sizeof(testCurrentInputSamples4)/sizeof(testCurrentInputSamples4[0]);
   struct intrepetedData dataInterpreted[sampleSize6];
-  int intrepetedConsecutiveSamples4 = getCurrentRangeAndOccurence(testCurrentInputSamples4,sampleSize6,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
+  void (*fn_ptrPrintOutput4)(double, double, int);
+  fn_ptrPrintOutput4 = &printOnConsole;
+  int intrepetedConsecutiveSamples4 = getCurrentRangeAndOccurence(testCurrentInputSamples4,sampleSize6,dataInterpreted,fn_ptrPrintOutput4,Sensor10Bit);
   REQUIRE(expectedConsecutiveSamples4 == intrepetedConsecutiveSamples4);
   intrepetedData expectedData4[sampleSize6] = {
     {3,6,4},
@@ -87,6 +92,8 @@ TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Inv
   int expectedConsecutiveSamples5 = 0;
   size_t sampleSize7 = sizeof(testCurrentInputSamples5)/sizeof(testCurrentInputSamples5[0]);
   struct intrepetedData dataInterpreted[sampleSize7];
-  int intrepetedConsecutiveSamples5 = getCurrentRangeAndOccurence(testCurrentInputSamples5,sampleSize7,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
+  void (*fn_ptrPrintOutput5)(double, double, int);
+  fn_ptrPrintOutput5 = &printOnConsole;
+  int intrepetedConsecutiveSamples5 = getCurrentRangeAndOccurence(testCurrentInputSamples5,sampleSize7,dataInterpreted,fn_ptrPrintOutput5,Sensor10Bit);
   REQUIRE(expectedConsecutiveSamples5 == intrepetedConsecutiveSamples5);
 }
