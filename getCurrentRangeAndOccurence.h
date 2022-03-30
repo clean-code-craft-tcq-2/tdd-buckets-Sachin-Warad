@@ -23,4 +23,4 @@ void updateIntrepretedData(struct intrepetedData dataInterpreted[], double conse
 void printOnConsole(double min, double max, int count);
 void convertToAmps(double currentInputSamples[],int sampleSize, SensorType sensor);
 void convertToAmps12BitSesnor(double currentInputSamples[],int sampleSize);
-void convertToAmps10BitSesnor(double currentInputSamples[],int sampleSize);
+void convertToAbsAmps10BitSesnor(double currentInputSamples[],int sampleSize);
