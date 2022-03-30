@@ -11,7 +11,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - valid case") {
   struct intrepetedData dataInterpreted[sampleSize1];
   void (*fn_ptrPrintOutput)(double, double, int);
   fn_ptrPrintOutput = &printOnConsole;
-  int intrepetedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput);
+  int intrepetedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples1 == intrepetedConsecutiveSamples1);
   intrepetedData expectedData[sampleSize1] = {
     {1,3,3},
