@@ -43,9 +43,9 @@ void printOnConsole(double min, double max, int count) {
         printf("%.0f-%.0f, %d\n",min,max,count);
 }
 
-int validateInputs(double currentInputSamples[], int sampleSize) {
+int validateInputs(double currentInputSamples[], int sampleSize, SensorType sensor, double sensorMaxValueErr[]) {
     for(int i=0; i<sampleSize-1; i++) {
-        if(currentInputSamples[i] < 0 || currentInputSamples[i] == MaxRange12BitSensor) {
+        if(currentInputSamples[i] < 0 || currentInputSamples[i] == sensorMaxValueErr[sensor]) {
             return 0;
         }
     }
@@ -74,8 +74,10 @@ int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct i
     return consecutiveSamples;
 }
 
-int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(double min, double max, int count)) {
-  int isInputsValid = validateInputs(currentInputSamples,sampleSize);
+int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], 
+                                void (*fn_ptrPrintOutput)(double min, double max, int count), SensorType sensor) {
+  double sensorMaxValueErr[2] = {SensorMax12Bit,SensorMax10Bit};
+  int isInputsValid = validateInputs(currentInputSamples,sampleSize,sensor,sensorMaxValueErr);
   if(isInputsValid == 1) {
     int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted);
     for(int i=0; i<consecutiveSamples; i++) {
