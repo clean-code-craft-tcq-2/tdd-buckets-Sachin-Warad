@@ -52,6 +52,13 @@ int validateInputs(double currentInputSamples[], int sampleSize) {
     return 1;
 }
 
+void convertToAmps10BitSesnor(double currentInputSamples[],int sampleSize) {
+    for(int i=0; i<sampleSize; i++) {
+        float ampValue = (15 * (currentInputSamples[i]-511)/511;
+        currentInputSamples[i] = lround(ampValue);
+    }
+}
+
 void convertToAmps(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
         float ampValue = (10 * currentInputSamples[i])/4094;
