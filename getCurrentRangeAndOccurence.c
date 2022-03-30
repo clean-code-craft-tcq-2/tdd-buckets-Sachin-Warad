@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include <math.h>
 #include "getCurrentRangeAndOccurence.h"
 
@@ -52,10 +52,10 @@ int validateInputs(double currentInputSamples[], int sampleSize, SensorType sens
     return 1;
 }
 
-void convertToAmps10BitSesnor(double currentInputSamples[],int sampleSize) {
+void convertToAbsAmps10BitSesnor(double currentInputSamples[],int sampleSize) {
     for(int i=0; i<sampleSize; i++) {
         float ampValue = ((currentInputSamples[i]-511)*15/511);
-        currentInputSamples[i] = lround(ampValue);
+        currentInputSamples[i] = abs(lround(ampValue));
     }
 }
 
@@ -70,7 +70,7 @@ void convertToAmps(double currentInputSamples[],int sampleSize, SensorType senso
     if(sensor == Sensor12Bit) {
         convertToAmps12BitSesnor(currentInputSamples, sampleSize);
     } else {
-        convertToAmps10BitSesnor(currentInputSamples, sampleSize);
+        convertToAbsAmps10BitSesnor(currentInputSamples, sampleSize);
     }
 }
 
