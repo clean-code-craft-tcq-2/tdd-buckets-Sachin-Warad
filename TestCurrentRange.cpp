@@ -3,25 +3,25 @@
 #include "test/catch.hpp"
 #include "getCurrentRangeAndOccurence.h"
 
+void (*fn_ptrPrintOutput)(double, double, int);
+fn_ptrPrintOutput = &printOnConsole;
 
 TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - valid case") {
   double testCurrentInputSamples1[] = {535,1130,700,2000,2566,4094,2999,3333};
   int expectedConsecutiveSamples1 = 3;
   size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
   struct intrepetedData dataInterpreted[sampleSize1];
-  void (*fn_ptrPrintOutput)(double, double, int);
-  fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples1 = getCurrentRangeAndOccurence(testCurrentInputSamples1,sampleSize1,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples1 == intrepetedConsecutiveSamples1);
-  intrepetedData expectedData[sampleSize1] = {
+  intrepetedData expectedData1[sampleSize1] = {
     {1,3,3},
     {5,8,4},
     {10,10,1}
   };
   for(int i=0; i<(int)expectedConsecutiveSamples1 ; i++) {
-    REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
-    REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
-    REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
+    REQUIRE(dataInterpreted[i].Min == expectedData1[i].Min);
+    REQUIRE(dataInterpreted[i].Max == expectedData1[i].Max);
+    REQUIRE(dataInterpreted[i].Size == expectedData1[i].Size);
   }
 }
 
@@ -30,8 +30,6 @@ TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Inv
   int expectedConsecutiveSamples2 = 0;
   size_t sampleSize2 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
   struct intrepetedData dataInterpreted[sampleSize2];
-  void (*fn_ptrPrintOutput)(double, double, int);
-  fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples2 == intrepetedConsecutiveSamples2);
 }
@@ -51,8 +49,6 @@ TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Inv
   int expectedConsecutiveSamples3 = 0;
   size_t sampleSize4 = sizeof(testCurrentInputSamples3)/sizeof(testCurrentInputSamples3[0]);
   struct intrepetedData dataInterpreted[sampleSize4];
-  void (*fn_ptrPrintOutput)(double, double, int);
-  fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples3 = getCurrentRangeAndOccurence(testCurrentInputSamples3,sampleSize4,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples3 == intrepetedConsecutiveSamples3);
 }
@@ -72,19 +68,17 @@ TEST_CASE("Infers the Current Ranges and their occurence for 10 bit Sensor - val
   int expectedConsecutiveSamples4 = 3;
   size_t sampleSize6 = sizeof(testCurrentInputSamples4)/sizeof(testCurrentInputSamples4[0]);
   struct intrepetedData dataInterpreted[sampleSize6];
-  void (*fn_ptrPrintOutput)(double, double, int);
-  fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples4 = getCurrentRangeAndOccurence(testCurrentInputSamples4,sampleSize6,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
   REQUIRE(expectedConsecutiveSamples4 == intrepetedConsecutiveSamples4);
-  intrepetedData expectedData[sampleSize6] = {
+  intrepetedData expectedData4[sampleSize6] = {
     {3,6,4},
     {9,12,6},
-    {15,15,1}
+    {15,15,2}
   };
   for(int i=0; i<(int)expectedConsecutiveSamples4 ; i++) {
-    REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
-    REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
-    REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
+    REQUIRE(dataInterpreted[i].Min == expectedData4[i].Min);
+    REQUIRE(dataInterpreted[i].Max == expectedData4[i].Max);
+    REQUIRE(dataInterpreted[i].Size == expectedData4[i].Size);
   }
 }
 
@@ -93,8 +87,6 @@ TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Inv
   int expectedConsecutiveSamples5 = 0;
   size_t sampleSize7 = sizeof(testCurrentInputSamples5)/sizeof(testCurrentInputSamples5[0]);
   struct intrepetedData dataInterpreted[sampleSize7];
-  void (*fn_ptrPrintOutput)(double, double, int);
-  fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples5 = getCurrentRangeAndOccurence(testCurrentInputSamples5,sampleSize7,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
   REQUIRE(expectedConsecutiveSamples5 == intrepetedConsecutiveSamples5);
 }
