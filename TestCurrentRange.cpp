@@ -32,7 +32,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(Negative
   struct intrepetedData dataInterpreted[sampleSize2];
   void (*fn_ptrPrintOutput)(double, double, int);
   fn_ptrPrintOutput = &printOnConsole;
-  int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput);
+  int intrepetedConsecutiveSamples2 = getCurrentRangeAndOccurence(testCurrentInputSamples2,sampleSize2,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples2 == intrepetedConsecutiveSamples2);
 }
 
@@ -53,7 +53,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(max valu
   struct intrepetedData dataInterpreted[sampleSize4];
   void (*fn_ptrPrintOutput)(double, double, int);
   fn_ptrPrintOutput = &printOnConsole;
-  int intrepetedConsecutiveSamples3 = getCurrentRangeAndOccurence(testCurrentInputSamples3,sampleSize4,dataInterpreted,fn_ptrPrintOutput);
+  int intrepetedConsecutiveSamples3 = getCurrentRangeAndOccurence(testCurrentInputSamples3,sampleSize4,dataInterpreted,fn_ptrPrintOutput,Sensor12Bit);
   REQUIRE(expectedConsecutiveSamples3 == intrepetedConsecutiveSamples3);
 }
 
