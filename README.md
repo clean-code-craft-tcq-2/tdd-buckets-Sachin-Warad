@@ -53,8 +53,9 @@ Start Test-driven approach
 
 ## Assumptions
 
-1. For 12 bit sensor if the sample contains negative number or max then it is invalid case and 0-0, 0 is printed
-2. Input Samples can be either sorted or not
+1. For 12 bit sensor if the sample contains negative number or max i.e., 4095 then it is considered as invalid sample case and 0-0, 0 is printed
+2. For 10 bit sensor if the sample contains maximmum value i.e., 1023 then it is considered as invalid sample case and 0-0, 0 is printed 
+3. Input Samples can be either sorted or not
 
 # Actions
 
