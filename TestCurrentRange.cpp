@@ -66,3 +66,35 @@ TEST_CASE("Infers the conversion to Absolute Amps for 10bit sensor") {
     REQUIRE(adcOutput10bit[i] == expectedDataADC10bit[i]);
   }
 }
+
+TEST_CASE("Infers the Current Ranges and their occurence for 10 bit Sensor - valid case") {
+  double testCurrentInputSamples4[] = {925,380,720,200,900,120,0,400,1022,860,825,680};
+  int expectedConsecutiveSamples4 = 3;
+  size_t sampleSize6 = sizeof(testCurrentInputSamples4)/sizeof(testCurrentInputSamples4[0]);
+  struct intrepetedData dataInterpreted[sampleSize1];
+  void (*fn_ptrPrintOutput)(double, double, int);
+  fn_ptrPrintOutput = &printOnConsole;
+  int intrepetedConsecutiveSamples4 = getCurrentRangeAndOccurence(testCurrentInputSamples4,sampleSize6,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
+  REQUIRE(expectedConsecutiveSamples4 == intrepetedConsecutiveSamples4);
+  intrepetedData expectedData[sampleSize6] = {
+    {3,6,4},
+    {9,12,6},
+    {15,15,1}
+  };
+  for(int i=0; i<(int)expectedConsecutiveSamples1 ; i++) {
+    REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
+    REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
+    REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
+  }
+}
+
+TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Invalid case(Maximum sample)") {
+  double testCurrentInputSamples5[] = {925,380,720,200,900,120,1023,400,1022,860,825,680};
+  int expectedConsecutiveSamples5 = 0;
+  size_t sampleSize7 = sizeof(testCurrentInputSamples5)/sizeof(testCurrentInputSamples5[0]);
+  struct intrepetedData dataInterpreted[sampleSize7];
+  void (*fn_ptrPrintOutput)(double, double, int);
+  fn_ptrPrintOutput = &printOnConsole;
+  int intrepetedConsecutiveSamples5 = getCurrentRangeAndOccurence(testCurrentInputSamples5,sampleSize7,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
+  REQUIRE(expectedConsecutiveSamples5 == intrepetedConsecutiveSamples5);
+}
