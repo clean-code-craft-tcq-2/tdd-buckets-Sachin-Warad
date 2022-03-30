@@ -25,8 +25,8 @@ TEST_CASE("Infers the Current Ranges and their occurence - valid case") {
   }
 }
 
-TEST_CASE("Infers the Current Ranges and their occurence - Invalid case") {
-  double testCurrentInputSamples2[] = {6,-3,7,9,10,12};
+TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(Negative sample)") {
+  double testCurrentInputSamples2[] = {535,1130,-700,2000,2566,4094,2999,3333};
   int expectedConsecutiveSamples2 = 0;
   size_t sampleSize2 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
   struct intrepetedData dataInterpreted[sampleSize2];
@@ -44,4 +44,15 @@ TEST_CASE("Infers the decryption of ADC") {
   for(int i=0; i<(int)sampleSize3; i++) {
     REQUIRE(adcOutput[i] == expectedDataADC[i]);
   }
+}
+
+TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(max value assigned)") {
+  double testCurrentInputSamples3[] = {535,1130,700,4095,2566,4094,2999,3333};
+  int expectedConsecutiveSamples3 = 0;
+  size_t sampleSize3 = sizeof(testCurrentInputSamples3)/sizeof(testCurrentInputSamples3[0]);
+  struct intrepetedData dataInterpreted[sampleSize3];
+  void (*fn_ptrPrintOutput)(double, double, int);
+  fn_ptrPrintOutput = &printOnConsole;
+  int intrepetedConsecutiveSamples3 = getCurrentRangeAndOccurence(testCurrentInputSamples3,sampleSize3,dataInterpreted,fn_ptrPrintOutput);
+  REQUIRE(expectedConsecutiveSamples3 == intrepetedConsecutiveSamples3);
 }
