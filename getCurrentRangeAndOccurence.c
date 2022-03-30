@@ -45,7 +45,7 @@ void printOnConsole(double min, double max, int count) {
 
 int validateInputs(double currentInputSamples[], int sampleSize) {
     for(int i=0; i<sampleSize-1; i++) {
-        if(currentInputSamples[i] < 0) {
+        if(currentInputSamples[i] < 0 || currentInputSamples[i] == MaxRange12BitSensor) {
             return 0;
         }
     }
