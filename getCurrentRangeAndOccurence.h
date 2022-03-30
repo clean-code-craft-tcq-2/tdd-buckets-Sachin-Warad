@@ -5,6 +5,8 @@ struct intrepetedData
     int Size;
 };
 
+#define MaxRange12BitSensor  4095
+
 int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], void (*fn_ptrPrintOutput)(double min, double max, int count));
 int validateInputs(double currentInputSamples[], int sampleSize);
 int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
