@@ -39,7 +39,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(Negative
 TEST_CASE("Infers the conversion to Amps for 12bit sensor") {
   double adcOutput12bit[] = {4094,1196,1233,3453,0,1111,3210};
   size_t sampleSize3 = sizeof(adcOutput12bit)/sizeof(adcOutput12bit[0]);
-  convertToAmps(adcOutput12bit,sampleSize3);
+  convertToAmps12BitSesnor(adcOutput12bit,sampleSize3);
   double expectedDataADC12bit[] = {10,3,3,8,0,3,8};
   for(int i=0; i<(int)sampleSize3; i++) {
     REQUIRE(adcOutput12bit[i] == expectedDataADC12bit[i]);
