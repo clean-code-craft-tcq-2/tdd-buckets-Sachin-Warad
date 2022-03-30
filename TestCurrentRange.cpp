@@ -4,7 +4,7 @@
 #include "getCurrentRangeAndOccurence.h"
 
 
-TEST_CASE("Infers the Current Ranges and their occurence - valid case") {
+TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - valid case") {
   double testCurrentInputSamples1[] = {535,1130,700,2000,2566,4094,2999,3333};
   int expectedConsecutiveSamples1 = 3;
   size_t sampleSize1 = sizeof(testCurrentInputSamples1)/sizeof(testCurrentInputSamples1[0]);
@@ -25,7 +25,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - valid case") {
   }
 }
 
-TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(Negative sample)") {
+TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Invalid case(Negative sample)") {
   double testCurrentInputSamples2[] = {535,1130,-700,2000,2566,4094,2999,3333};
   int expectedConsecutiveSamples2 = 0;
   size_t sampleSize2 = sizeof(testCurrentInputSamples2)/sizeof(testCurrentInputSamples2[0]);
@@ -46,7 +46,7 @@ TEST_CASE("Infers the conversion to Amps for 12bit sensor") {
   }
 }
 
-TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(max value assigned)") {
+TEST_CASE("Infers the Current Ranges and their occurence for 12 bit Sensor - Invalid case(max value assigned)") {
   double testCurrentInputSamples3[] = {535,1130,700,4095,2566,4094,2999,3333};
   int expectedConsecutiveSamples3 = 0;
   size_t sampleSize4 = sizeof(testCurrentInputSamples3)/sizeof(testCurrentInputSamples3[0]);
@@ -57,7 +57,7 @@ TEST_CASE("Infers the Current Ranges and their occurence - Invalid case(max valu
   REQUIRE(expectedConsecutiveSamples3 == intrepetedConsecutiveSamples3);
 }
 
-TEST_CASE("Infers the conversion to Amps for 10bit sensor") {
+TEST_CASE("Infers the conversion to Absolute Amps for 10bit sensor") {
   double adcOutput10bit[] = {0,1022,511,238,68,820,1000};
   size_t sampleSize5 = sizeof(adcOutput10bit)/sizeof(adcOutput10bit[0]);
   convertToAbsAmps10BitSesnor(adcOutput10bit,sampleSize5);
