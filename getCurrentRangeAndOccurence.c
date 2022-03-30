@@ -75,6 +75,7 @@ int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize,
     }
     return consecutiveSamples;
   }
+  fn_ptrPrintOutput(0,0,0);
   return 0;
   
 }
