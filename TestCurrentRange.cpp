@@ -71,7 +71,7 @@ TEST_CASE("Infers the Current Ranges and their occurence for 10 bit Sensor - val
   double testCurrentInputSamples4[] = {925,380,720,200,900,120,0,400,1022,860,825,680};
   int expectedConsecutiveSamples4 = 3;
   size_t sampleSize6 = sizeof(testCurrentInputSamples4)/sizeof(testCurrentInputSamples4[0]);
-  struct intrepetedData dataInterpreted[sampleSize1];
+  struct intrepetedData dataInterpreted[sampleSize6];
   void (*fn_ptrPrintOutput)(double, double, int);
   fn_ptrPrintOutput = &printOnConsole;
   int intrepetedConsecutiveSamples4 = getCurrentRangeAndOccurence(testCurrentInputSamples4,sampleSize6,dataInterpreted,fn_ptrPrintOutput,Sensor10Bit);
@@ -81,7 +81,7 @@ TEST_CASE("Infers the Current Ranges and their occurence for 10 bit Sensor - val
     {9,12,6},
     {15,15,1}
   };
-  for(int i=0; i<(int)expectedConsecutiveSamples1 ; i++) {
+  for(int i=0; i<(int)expectedConsecutiveSamples4 ; i++) {
     REQUIRE(dataInterpreted[i].Min == expectedData[i].Min);
     REQUIRE(dataInterpreted[i].Max == expectedData[i].Max);
     REQUIRE(dataInterpreted[i].Size == expectedData[i].Size);
