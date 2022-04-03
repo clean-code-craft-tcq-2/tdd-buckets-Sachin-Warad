@@ -66,17 +66,8 @@ void convertToAmps12BitSesnor(double currentInputSamples[],int sampleSize) {
     }
 }
 
-void convertToAmps(double currentInputSamples[],int sampleSize, SensorType sensor, convToAmps_funcptr ampConverter[]) {
-//     if(sensor == Sensor12Bit) {
-//         convertToAmps12BitSesnor(currentInputSamples, sampleSize);
-//     } else {
-//         convertToAbsAmps10BitSesnor(currentInputSamples, sampleSize);
-//     }
-       ampConverter[sensor](currentInputSamples,sampleSize);
-}
-
 int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[], SensorType sensor, convToAmps_funcptr ampConverter[]) {
-    convertToAmps(currentInputSamples, sampleSize, sensor, ampConverter);
+    ampConverter[sensor](currentInputSamples,sampleSize);
     sortCurrentRanges(currentInputSamples, sampleSize);
     int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
     return consecutiveSamples;
