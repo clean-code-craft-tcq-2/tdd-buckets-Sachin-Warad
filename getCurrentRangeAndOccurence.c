@@ -3,9 +3,6 @@
 #include <math.h>
 #include "getCurrentRangeAndOccurence.h"
 
-typedef void (*convToAmps_funcptr)(double*,int);
-convToAmps_funcptr ampConverter[] = {convertToAmps12BitSesnor, convertToAbsAmps10BitSesnor};
-
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], double consecutiveSamples[], int size, int consecutiveSamplesNumber) {
     dataInterpreted[consecutiveSamplesNumber].Min = consecutiveSamples[0];
     dataInterpreted[consecutiveSamplesNumber].Max = consecutiveSamples[size];
@@ -69,16 +66,17 @@ void convertToAmps12BitSesnor(double currentInputSamples[],int sampleSize) {
     }
 }
 
-void convertToAmps(double currentInputSamples[],int sampleSize, SensorType sensor) {
-    if(sensor == Sensor12Bit) {
-        convertToAmps12BitSesnor(currentInputSamples, sampleSize);
-    } else {
-        convertToAbsAmps10BitSesnor(currentInputSamples, sampleSize);
-    }
+void convertToAmps(double currentInputSamples[],int sampleSize, SensorType sensor, convToAmps_funcptr ampConverter[]) {
+//     if(sensor == Sensor12Bit) {
+//         convertToAmps12BitSesnor(currentInputSamples, sampleSize);
+//     } else {
+//         convertToAbsAmps10BitSesnor(currentInputSamples, sampleSize);
+//     }
+       ampConverter[sensor](currentInputSamples,sampleSize);
 }
 
-int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[], SensorType sensor) {
-    convertToAmps(currentInputSamples, sampleSize, sensor);
+int handleValidSampleCase(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[], SensorType sensor, convToAmps_funcptr ampConverter[]) {
+    convertToAmps(currentInputSamples, sampleSize, sensor, ampConverter);
     sortCurrentRanges(currentInputSamples, sampleSize);
     int consecutiveSamples = checkForConsecutiveSamples(currentInputSamples, sampleSize, dataInterpreted);
     return consecutiveSamples;
@@ -89,7 +87,8 @@ int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize,
   double sensorMaxValueErr[2] = {SensorMax12Bit,SensorMax10Bit};
   int isInputsValid = validateInputs(currentInputSamples,sampleSize,sensor,sensorMaxValueErr);
   if(isInputsValid == 1) {
-    int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted, sensor);
+    convToAmps_funcptr ampConverter[] = {convertToAmps12BitSesnor, convertToAbsAmps10BitSesnor};
+    int consecutiveSamples = handleValidSampleCase(currentInputSamples, sampleSize, dataInterpreted, sensor, ampConverter);
     for(int i=0; i<consecutiveSamples; i++) {
         fn_ptrPrintOutput(dataInterpreted[i].Min,dataInterpreted[i].Max,dataInterpreted[i].Size);  
     }
