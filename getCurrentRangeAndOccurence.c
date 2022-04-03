@@ -3,7 +3,7 @@
 #include <math.h>
 #include "getCurrentRangeAndOccurence.h"
 
-typedef void (*convToAmps_funcptr)(double,int);
+typedef void (*convToAmps_funcptr)(double*,int);
 convToAmps_funcptr ampConverter[] = {convertToAmps12BitSesnor, convertToAbsAmps10BitSesnor};
 
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], double consecutiveSamples[], int size, int consecutiveSamplesNumber) {
