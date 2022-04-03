@@ -23,7 +23,6 @@ void sortCurrentRanges(double currentInputSamples[], int sampleSize);
 int checkForConsecutiveSamples(double currentInputSamples[], int sampleSize, struct intrepetedData dataInterpreted[]);
 void updateIntrepretedData(struct intrepetedData dataInterpreted[], double consecutiveSamples[], int size, int consecutiveSamplesNumber);
 void printOnConsole(double min, double max, int count);
-void convertToAmps(double currentInputSamples[],int sampleSize, SensorType sensor, convToAmps_funcptr ampConverter[]);
 void convertToAmps12BitSesnor(double currentInputSamples[],int sampleSize);
 void convertToAbsAmps10BitSesnor(double currentInputSamples[],int sampleSize);
 
