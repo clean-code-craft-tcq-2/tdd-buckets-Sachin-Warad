@@ -13,6 +13,8 @@ typedef enum {
 #define SensorMax12Bit 4095
 #define SensorMax10Bit 1023
 
+typedef void (*convToAmps_funcptr)(double*,int);
+
 int getCurrentRangeAndOccurence(double currentInputSamples[], size_t sampleSize, struct intrepetedData dataInterpreted[], 
                                 void (*fn_ptrPrintOutput)(double min, double max, int count), SensorType sensor);
 int validateInputs(double currentInputSamples[], int sampleSize, SensorType sensor, double sensorMaxValueErr[]);
@@ -25,4 +27,4 @@ void convertToAmps(double currentInputSamples[],int sampleSize, SensorType senso
 void convertToAmps12BitSesnor(double currentInputSamples[],int sampleSize);
 void convertToAbsAmps10BitSesnor(double currentInputSamples[],int sampleSize);
 
-typedef void (*convToAmps_funcptr)(double*,int);
+
